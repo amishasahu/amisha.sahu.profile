@@ -1,7 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ContactPage.css";
+import axios from "axios";
 function ContactPage() {
-  return (
+  const [name,setName]=useState("");
+  const [email,setEmail]=useState("");
+  const [subject,setSubject]=useState("");
+  const [message,setMessage]=useState("");
+  const [error,setError]=useState({nameError:"",emailError:"",subjectError:"",messageError:""})
+
+  const validate=()=>{
+    let err=false;
+    if(name.trim().length===0){
+        error.nameError="PLease enter the name";
+        err=true;
+    }
+    if(email.trim().length===0){
+      error.emailError="Please enter email address";
+      err=true;
+    }
+    if(subject.trim().length===0){
+      error.subjectError="Please enter subject";
+      err=true;
+    }
+    if(message.trim().length===0){
+      error.messageError="Please enter message";
+      err=true;
+    }
+
+    if(err===true){
+      setError({...error},error);
+      return false;
+    }else {
+      return true;
+    }
+
+  }
+
+  const sendMail=(data)=>{
+    axios({
+      method: "POST", 
+      url:"http://localhost:8001/send", 
+      data:  data
+    }).then((response)=>{
+      if (response.data.status === 'success'){
+          console.log("Message Sent."); 
+      }else if(response.data.status === 'fail'){
+          console.log("Message failed to send.")
+      }
+    })
+  }
+ const handleSubmit=(e)=>{
+
+   e.preventDefault();
+   if(validate()===true){
+     const data={name:name,email:email,subject:subject,message:message}
+     sendMail(data);
+   }else {
+     console.log("validation unsuccessful")
+   }
+  }  
+
+  const onChangeName=(e)=>{
+    setName(e.target.value);
+    error.nameError="";
+    setError({...error},error)
+  }
+
+  const onChangeEmail=(e)=>{
+    setEmail(e.target.value)
+    error.emailError="";
+    setError({...error},error)
+  }
+  const onChangeSubject=(e)=>{
+    setSubject(e.target.value)
+    error.subjectError="";
+    setError({...error},error)
+  }
+  const onChangeMessage=(e)=>{
+    setMessage(e.target.value)
+    error.messageError="";
+    setError({...error},error)
+  }
+
+return (
     <div>
       <div  class="contact">
           <div class="row" data-aos="fade-in">
@@ -36,8 +117,7 @@ function ContactPage() {
 
             <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
               <form
-                action=""
-                method="post"
+                onSubmit={handleSubmit}
                 class="php-email-form"
               >
                 <div class="row">
@@ -48,9 +128,14 @@ function ContactPage() {
                       name="name"
                       class="form-control"
                       id="name"
+                      value={name}
+                      onChange={onChangeName}
                       placeholder="Your Name"
-                      required
                     />
+                    {error.nameError&& error.nameError!==""?
+                    <div class="required"><span>{error.nameError}</span></div>
+                    :null
+                    }
                   </div>
                   <div class="form-group col-md-6">
                     <label for="name">Your Email</label>
@@ -59,9 +144,13 @@ function ContactPage() {
                       class="form-control"
                       name="email"
                       id="email"
-                      required
+                      value={email}
+                      onChange={onChangeEmail}
                       placeholder="Your Email"
                     />
+                    {error.emailError && error.emailError!==""&&
+                    <><div class="required"><span>{error.emailError}</span></div></>
+                    }
                   </div>
                 </div>
                 <div class="form-group">
@@ -71,9 +160,13 @@ function ContactPage() {
                     class="form-control"
                     name="subject"
                     id="subject"
+                    value={subject}
+                    onChange={onChangeSubject}
                     placeholder="Subject"
-                    required
                   />
+                  {error.subjectError && error.subjectError!==""&&
+                    <><div class="required"><span>{error.subjectError}</span></div></>
+                    }
                 </div>
                 <div class="form-group">
                   <label for="name">Message</label>
@@ -81,9 +174,13 @@ function ContactPage() {
                     class="form-control"
                     name="message"
                     rows="10"
+                    value={message}
+                    onChange={onChangeMessage}
                     placeholder="Message"
-                    required
                   ></textarea>
+                    {error.messageError && error.messageError!=""&&
+                    <><div class="required"><span>{error.messageError}</span></div></>
+                    }
                 </div>
                 <div class="my-3">
                   <div class="loading">Loading</div>
