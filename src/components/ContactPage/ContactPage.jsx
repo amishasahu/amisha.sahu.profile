@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ContactPage.css";
 import axios from "axios";
 function ContactPage() {
@@ -6,7 +6,13 @@ function ContactPage() {
   const [email,setEmail]=useState("");
   const [subject,setSubject]=useState("");
   const [message,setMessage]=useState("");
-  const [error,setError]=useState({nameError:"",emailError:"",subjectError:"",messageError:""})
+  const [error,setError]=useState({nameError:"",emailError:"",subjectError:"",messageError:""});
+  const [pending,setPending]=useState(false);
+  const [success,setSuccess]=useState("");
+
+  useEffect(()=>{
+    setSuccess("")
+  },[name,message,email,subject])
 
   const validate=()=>{
     let err=false;
@@ -37,24 +43,36 @@ function ContactPage() {
   }
 
   const sendMail=(data)=>{
+
     axios({
       method: "POST", 
-      url:"http://localhost:8001/send", 
+      url:"https://amisha-sahu-backend.herokuapp.com/send", 
       data:  data
     }).then((response)=>{
       if (response.data.status === 'success'){
           console.log("Message Sent."); 
+          setSuccess("Your message has been sent. Thank you!")
+          setPending(false)
       }else if(response.data.status === 'fail'){
           console.log("Message failed to send.")
+          setPending(false)
       }
     })
   }
+  const resetForm=()=>{
+    setName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
+    setError({...error},{nameError:"",emailError:"",subjectError:"",messageError:""})
+  }
  const handleSubmit=(e)=>{
-
    e.preventDefault();
    if(validate()===true){
+     resetForm();
      const data={name:name,email:email,subject:subject,message:message}
      sendMail(data);
+     setPending(true);
    }else {
      console.log("validation unsuccessful")
    }
@@ -178,19 +196,17 @@ return (
                     onChange={onChangeMessage}
                     placeholder="Message"
                   ></textarea>
-                    {error.messageError && error.messageError!=""&&
+                    {error.messageError && error.messageError!==""&&
                     <><div class="required"><span>{error.messageError}</span></div></>
                     }
                 </div>
                 <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">
-                    Your message has been sent. Thank you!
+                  <div class={success!==""?"sent-message":""}>
+                    <span>{success}</span>
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="submit">Send Message</button>
+                  <button type="submit" disabled={pending}>{pending?"Loading":"Send Message"}</button>
                 </div>
               </form>
             </div>
