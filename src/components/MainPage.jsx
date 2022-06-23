@@ -56,13 +56,13 @@ return (
           <p class="about-wrapper__info-text">
             Extra Information about you! like hobbies and your goals.
           </p>
-          <div class="row">
-          <div class="col-6">
+          <div class="row" style={{'width':"100%"}}>
+          <div class="col-md-6">
           <ProgressComp value="HTML" range={80} />
           <ProgressComp value="CSS" range={70}  />
           <ProgressComp value="React JS" range={88}  />
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
           <ProgressComp value="Javascript" range={85}  />
           <ProgressComp value="Wordpress" range={80}  />
           <ProgressComp value="jQuery" range={60}  />
