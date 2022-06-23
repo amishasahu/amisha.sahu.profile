@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../styles.scss";
+import "./MainPage.css"
 import initScrollReveal from "./scrollReveal";
 import initTiltEffect from "./tiltAnimation";
 import { targetElements, defaultProps } from "./scrollRevealConfig";
 import ContactPage from './ContactPage/ContactPage';
+
+import "react-sweet-progress/lib/style.css";
+import ProgressComp from './ProgressComp';
 
 function MainPage() {
     useEffect(()=>{
@@ -52,6 +56,18 @@ return (
           <p class="about-wrapper__info-text">
             Extra Information about you! like hobbies and your goals.
           </p>
+          <div class="row">
+          <div class="col-6">
+          <ProgressComp value="HTML" range={80} />
+          <ProgressComp value="CSS" range={70}  />
+          <ProgressComp value="React JS" range={88}  />
+          </div>
+          <div class="col-6">
+          <ProgressComp value="Javascript" range={85}  />
+          <ProgressComp value="Wordpress" range={80}  />
+          <ProgressComp value="jQuery" range={60}  />
+          </div>
+          </div>
           <span class="d-flex mt-3">
             <a
               rel="noreferrer"
