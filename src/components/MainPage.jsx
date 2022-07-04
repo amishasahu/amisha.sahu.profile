@@ -50,11 +50,11 @@ return (
       <div class="col-md-6 col-sm-12">
         <div class="about-wrapper__info load-hidden">
           <p class="about-wrapper__info-text">
-            This is where you can describe about yourself. The more you
-            describe about yourself, the more chances you can!
+          Have two years of experience in Web Development using React JS. I am a quick learner, highly motivated to work on innovative projects
+and explore new opportunities. Would love work on recent technologies and building crazy applications.
           </p>
           <p class="about-wrapper__info-text">
-            Extra Information about you! like hobbies and your goals.
+          My interests lies in Graphic designing and dancing.
           </p>
           <div class="row" style={{'width':"100%"}}>
           <div class="col-md-6">
@@ -93,21 +93,17 @@ return (
       <div class="row">
         <div class="col-lg-4 col-sm-12">
           <div class="project-wrapper__text load-hidden">
-            <h3 class="project-wrapper__text-title">Project Title 0</h3>
+            <h3 class="project-wrapper__text-title">Memory Game</h3>
             <div>
               <p class="mb-4">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Excepturi neque, ipsa animi maiores repellendus distinctio
-                aperiam earum dolor voluptatum consequatur blanditiis
-                inventore debitis fuga numquam voluptate ex architecto
-                itaque molestiae.
+                Developed using React JS,HTML,CSS,Bootstrap. This is a simple game where you match the pairs.The speciality about this app is that this application is a progressive web application.
               </p>
             </div>
             <a
               rel="noreferrer"
               target="_blank"
               class="cta-btn cta-btn--hero"
-              href="#!"
+              href="https://serene-marshmallow-3f11f1.netlify.app/"
             >
               See Live
             </a>
@@ -115,7 +111,7 @@ return (
               rel="noreferrer"
               target="_blank"
               class="cta-btn text-color-main"
-              href="#!"
+              href="https://github.com/amishasahu/memory-game"
             >
               Source Code
             </a>
@@ -134,7 +130,7 @@ return (
                 <img
                   alt="Project"
                   class="img-fluid"
-                  src="../assets/project.jpg"
+                  src="assets/game1.png"
                 />
               </div>
             </a>
@@ -145,14 +141,11 @@ return (
       <div class="row">
         <div class="col-lg-4 col-sm-12">
           <div class="project-wrapper__text load-hidden">
-            <h3 class="project-wrapper__text-title">Project Title 1</h3>
+            <h3 class="project-wrapper__text-title">Tinder Clone</h3>
             <div>
               <p class="mb-4">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Excepturi neque, ipsa animi maiores repellendus distinctio
-                aperiam earum dolor voluptatum consequatur blanditiis
-                inventore debitis fuga numquam voluptate ex architecto
-                itaque molestiae.
+              Developed using MERN stack(Mongo DB,Express,React JS,Node JS). Its a simple Tinder Clone.
+              It has basic functionalities like fetching data from the database. Swipe right and swipe left functionality. 
               </p>
             </div>
             <a
@@ -186,7 +179,7 @@ return (
                 <img
                   alt="Project"
                   class="img-fluid"
-                  src="assets/project.jpg"
+                  src="assets/game2.png"
                 />
               </div>
             </a>
@@ -194,57 +187,7 @@ return (
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-lg-4 col-sm-12">
-          <div class="project-wrapper__text load-hidden">
-            <h3 class="project-wrapper__text-title">Project Title 2</h3>
-            <div>
-              <p class="mb-4">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Excepturi neque, ipsa animi maiores repellendus distinctio
-                aperiam earum dolor voluptatum consequatur blanditiis
-                inventore debitis fuga numquam voluptate ex architecto
-                itaque molestiae.
-              </p>
-            </div>
-            <a
-              rel="noreferrer"
-              target="_blank"
-              class="cta-btn cta-btn--hero"
-              href="#!"
-            >
-              See Live
-            </a>
-            <a
-              rel="noreferrer"
-              target="_blank"
-              class="cta-btn text-color-main"
-              href="#!"
-            >
-              Source Code
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-8 col-sm-12">
-          <div class="project-wrapper__image load-hidden">
-            <a rel="noreferrer" href="#!" target="_blank">
-              <div
-                data-tilt
-                data-tilt-max="4"
-                data-tilt-glare="true"
-                data-tilt-max-glare="0.5"
-                class="thumbnail rounded js-tilt"
-              >
-                <img
-                  alt="Project"
-                  class="img-fluid"
-                  src="assets/project.jpg"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
+
 
     </div>
   </div>
